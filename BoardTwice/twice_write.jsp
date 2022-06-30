@@ -42,7 +42,7 @@
 	        String path = request.getRealPath("./asset");
 	        String str, filename, original_filename;
 			
-			MultipartRequest multi = new MultipartRequest(request, path, 10 * 1024, "UTF-8", new DefaultFileRenamePolicy());
+			MultipartRequest multi = new MultipartRequest(request, path, 1024 * 1024 * 5, "UTF-8", new DefaultFileRenamePolicy());
 			
 			Enumeration files = multi.getFileNames();
 	        str = (String)files.nextElement();

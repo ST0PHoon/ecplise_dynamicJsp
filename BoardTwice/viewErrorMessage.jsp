@@ -10,7 +10,7 @@
 <body>
 	<script>
 		alert("id 중복");
-		window.location="twice_list.jsp";
+		window.location="twice_insert.jsp";
 	</script>
 </body>
 </html>

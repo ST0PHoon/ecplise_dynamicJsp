@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, javax.sql.*, java.io.*" %>
 <%@page import="java.util.Date" %><%@page import="java.text.SimpleDateFormat" %>
+<%@ page errorPage = "viewErrorMessage.jsp" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,6 +19,13 @@
 		}
 	}
 
+	function numberMaxLength(e){
+        if(e.value.length > e.maxLength){
+
+            e.value = e.value.slice(0, e.maxLength);
+        }
+    }
+	
 </script>
 </head>
 <body>
@@ -35,19 +43,19 @@
 			<tr>
 				<td width=100><b>상품 번호</b></td>
 				<td>
-					<input type=number name=id  min='0' size=70 maxlength=70 required='required'>
+					<input type=number name=id  min='0' required='required' maxlength="6" oninput="numberMaxLength(this);">
 				</td>
 			</tr>
 			<tr>
 				<td><b>상품명</b></td>
 				<td>
-					<input type=text name=title size=70 maxlength=70 required='required' pattern='^[가-힣a-zA-Z0-9\s]*'>
+					<input type=text name=title size=70 maxlength=70 required='required' pattern='^[가-힣a-zA-Z0-9\s+]*' title = '문자형식으로 입력해주세요'>
 				</td>
 			</tr>
 			<tr>
 				<td><b>재고현황</b></td>
 				<td>
-					<input type=number name=EA min='0' size=70 maxlength=70 required='required'>
+					<input type=number name=EA min='0' required='required' title = '정수형으로 입력해주세요' maxlength="6" oninput="numberMaxLength(this);">
 				</td>
 			</tr>
 			<tr>

@@ -39,7 +39,7 @@
 			<tr>
 				<td>제목</td>
 				<td>
-					<input type=text name=title size=70 maxlength=70>
+					<input type=text name=title size=70 maxlength=70 required='required'>
 				</td>
 			</tr>
 			<tr>
@@ -51,7 +51,7 @@
 			<tr>
 				<td>내용</td>
 				<td>
-					<textarea style='width:550px; height:250px; resize:none;' name =content cols=70 row=600></textarea>
+					<textarea style='width:550px; height:250px; resize:none;' name =content cols=70 row=600 required='required'></textarea>
 				</td>
 			</tr>
 		</table>

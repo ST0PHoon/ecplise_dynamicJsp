@@ -83,25 +83,25 @@
 		   nPage = lastPage + 1;
 		}
 		
-		String sql = "select * from stock limit " + (countPerPage * (cPageInt - 1))  + "," + countPerPage + " ;";
+		String sql = "select * from stock limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
 		
 		ResultSet rset = stmt.executeQuery(sql);
-		rset.next();
 	%>
 	
 	<h2>(주) DS 마트 재고 현황 - 전체현황</h2>
+	<h4>현재페이지 <%=cPageInt %>p</h4>
 	<table cellspacing = 1  border = 1 >
 		<tr align=center>
 			<td width = 80>상품번호</td>
 			<td width = 200>제목</td>
 			<td width = 100>현재 재고수</td>
-			<td width = 100>재고파악일</td>
 			<td width = 100>상품등록일</td>
+			<td width = 100>재고파악일</td>
 		</tr>
 		<%
 			while (rset.next()) {
 				out.println("<tr align=center>");
-				out.println("<td>" + rset.getInt(1) + "</td>");
+				out.println("<td><a href='twice_view.jsp?key="+ rset.getInt(1) +"'>" + rset.getInt(1) + "</a></td>");
 				out.println("<td><a href='twice_view.jsp?key="+ rset.getInt(1) +"'>" + rset.getString(2) + "</a></td>");
 				out.println("<td>" + rset.getString(3) + "</td>");
 				out.println("<td>" + rset.getString(4) + "</td>");
@@ -111,9 +111,6 @@
 		%>
 	</table>
 	<table width= border=0>
-		<tr>
-			<td width=150>현재페이지 <%=cPageInt %>p</td>
-		</tr>
 		<tr>
 			<td width = 600 align=center>
 				<b><a href = 'twice_list.jsp?page=<%=pPage %>'> &lt&lt </a></b>

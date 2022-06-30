@@ -12,6 +12,13 @@
 		var myform = document.fm;
 		myform.action = "twice_write.jsp";
 	}
+	
+	function numberMaxLength(e){
+        if(e.value.length > e.maxLength){
+
+            e.value = e.value.slice(0, e.maxLength);
+        }
+    }
 
 </script>
 </head>
@@ -42,7 +49,7 @@
 			<tr>
 				<td><b>상품 번호</b></td>
 				<td>
-					<input type=text name=id size=70 maxlength=70 value=<%=id %> readonly>
+					<input type=text name=id size=6 maxlength=6 value=<%=id %> readonly>
 				</td>
 			</tr>
 			<tr>
@@ -54,7 +61,7 @@
 			<tr>
 				<td><b>재고현황</b></td>
 				<td>
-					<input type=number name=EA size=70 maxlength=70 value=<%=itemEA %> required='required' min='0'>
+					<input type=number name=EA size=6 value=<%=itemEA %> required='required' min='0' title = '정수형식으로 입력해주세요' maxlength="6" oninput="numberMaxLength(this);">
 				</td>
 			</tr>
 			<tr>
