@@ -58,7 +58,7 @@
 			<tr>
 				<td><b>제목</b></td>
 				<td>
-					<input type=text name=title size=70 maxlength=70 value=<%=cTitle %> required='required'>
+					<input type=text name=title size=70 maxlength=70 required='required' value="<%=cTitle %>" >
 				</td>
 			</tr>
 			<tr>

@@ -9,9 +9,13 @@
 <title>작성완료</title>
 <%
 	request.setCharacterEncoding("UTF-8");
-	String ckey = request.getParameter("id");
+	String ckey = request.getParameter("key");
 	String cTitle = request.getParameter("title");
 	String cContent = request.getParameter("content");
+	String cRootId = request.getParameter("rootId");
+	String cReLevel = request.getParameter("reLevel");
+	String cReCnt = request.getParameter("reCnt");
+	String cReGroupId = request.getParameter("reGroupId");
 	
 	Class.forName("com.mysql.jdbc.Driver");
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc","root","kopo37");
@@ -20,10 +24,35 @@
 	String sql="";
 	
 	if (ckey.equals("INSERT")) {
-		sql = "insert into boardComment (title, date, content) values " +
-				"('" + cTitle + 
+		sql = "insert into boardComment (rootId, reLevel, reGroupId, reCnt, viewCnt, title, date, content) values " +
+				"((select (ifnull(max(rootId) + 1, 1)) from boardComment as b) " +
+				", 0" +
+				", (select (ifnull(max(id) + 1, 1)) from boardComment as b)" +
+				", 0" +
+				", 0" +
+				", '" + cTitle + 
 				"', now()" + 					
 				", '" + cContent + "')";
+	} else if (ckey.equals("REINSERT")) {
+		String addReCntSql = "update boardComment set reCnt = reCnt + 1 where rootId = " + cRootId + " and reCnt >= " + cReCnt;
+		
+		stmt.execute(addReCntSql);
+		
+		String reRe = "";
+		for (int i = 0; i < Integer.parseInt(cReLevel); i++) {
+			reRe += "└>";
+		}
+		
+		sql = "insert into boardComment (rootId, reLevel, reGroupId, reCnt, viewCnt, title, date, content) values " +
+				"(" + cRootId +
+				", " + cReLevel +
+				", " + cReGroupId +
+				", " + cReCnt +
+				", 0" + 
+				", '" + reRe + cTitle +
+				"', now()" + 					
+				", '" + cContent + "')";
+		
 	} else {
 		sql = "update boardComment set " +
 				"title = '" + cTitle + "', " +
