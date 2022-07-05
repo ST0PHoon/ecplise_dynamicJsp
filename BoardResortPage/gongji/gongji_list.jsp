@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.sql.*, javax.sql.*, java.io.*" %>
-<%@page import="java.util.Date" %><%@page import="java.text.SimpleDateFormat" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,7 +21,7 @@
 		}
 		
 		int totalCount = 0; // 총자료개수
-		ResultSet rset2 = stmt.executeQuery("select count(*) from boardComment;");
+		ResultSet rset2 = stmt.executeQuery("select count(*) from gongji;");
 		while (rset2.next()) {
 		  totalCount = rset2.getInt(1);
 		}
@@ -80,51 +79,46 @@
 		} else {
 		   nPage = lastPage + 1;
 		}
-		// 날짜 
-		Date now = new Date();
-		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
-		String today = sf.format(now);
 		
-		String sql = "SELECT id, if(date = '" + today + "', CONCAT(title,'[New]'), title), viewCnt , date from boardComment ORDER BY rootId DESC, reCnt ASC limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
+		String sql = "SELECT id, title, date from gongji ORDER BY id DESC limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
+		
 		ResultSet rset = stmt.executeQuery(sql);
 	%>
 	<h2>게시판</h2>
-	<table cellspacing = 1  border = 1 width=750>
+	<table cellspacing = 1  border = 1 width=600>
 		<tr align=center>
 			<td width = 50>번호</td>
 			<td width = 500>제목</td>
-			<td width = 100>조회수</td>
 			<td width = 100>등록일</td>
 		</tr>
 		<%
 			while (rset.next()) {
-				out.println("<tr>");
-				out.println("<td  align=center>" + rset.getInt(1) + "</td>");
-				out.println("<td><a href='comment_view.jsp?key="+ rset.getInt(1) +"'>" + rset.getString(2) + "</a></td>");
-				out.println("<td  align=center>" + rset.getString(3) + "</td>");
-				out.println("<td  align=center>" + rset.getString(4) + "</td>");
+				out.println("<tr align=center>");
+				out.println("<td>" + rset.getInt(1) + "</td>");
+				out.println("<td><a href='gongji_view.jsp?key="+ rset.getInt(1) +"'>" + rset.getString(2) + "</a></td>");
+				out.println("<td>" + rset.getString(3) + "</td>");
 				out.println("</tr>");
 			}
 		%>
 	</table>
-	<table width= border=0>
+		<table width= border=0>
 		<tr>
 			<td width = 600 align=center>
-				<b><a href = 'comment_list.jsp?page=<%=pPage %>'> &lt&lt </a></b>
+				<b><a href = 'gongji_list.jsp?page=<%=pPage %>'> &lt&lt </a></b>
 				<%
 					for (int i = startPage; i <= lastPage; i++) {
 						if(i == cPageInt) {
-				            out.print("<b><u><a href = 'comment_list.jsp?page=" + i +"'> " + i + " </a></u></b>");
+				            out.print("<b><u><a href = 'gongji_list.jsp?page=" + i +"'> " + i + " </a></u></b>");
 				         } else {
-				            out.print("<b><a href = 'comment_list.jsp?page=" + i +"'> " + i + " </a></b>");
+				            out.print("<b><a href = 'gongji_list.jsp?page=" + i +"'> " + i + " </a></b>");
 				         }
 					}
 				%>
-				<b><a href = 'comment_list.jsp?page=<%=nPage %>'> &gt&gt </a></b>
+				<b><a href = 'gongji_list.jsp?page=<%=nPage %>'> &gt&gt </a></b>
 			</td>
 		</tr>
 	</table>
 	
-	<button onclick="location.href='comment_insert.jsp'">신규</button>
+	<button onclick="location.href='gongji_insert.jsp'">신규</button>
 </body>
 </html>

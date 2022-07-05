@@ -11,10 +11,10 @@
 	function submitForm(mode) {
 		var myform = document.fm;
 		if (mode == 1) {
-			myform.action = "comment_list.jsp";
+			myform.action = "gongji_list.jsp";
 		}
 		if (mode == 2) {
-			myform.action = "comment_write.jsp?key=INSERT";
+			myform.action = "gongji_write.jsp?id=INSERT";
 		}
 	}
 
@@ -66,6 +66,7 @@
 				</td>
 			</tr>
 		</table>
+		
 	</form>
 </body>
 </html>

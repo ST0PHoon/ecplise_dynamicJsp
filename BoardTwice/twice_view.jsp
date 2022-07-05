@@ -8,8 +8,6 @@
 <head>
 <meta charset="UTF-8">
 <title>상품상세</title>
-
-
 </head>
 <body>
 	<%

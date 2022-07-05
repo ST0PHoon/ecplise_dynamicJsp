@@ -7,6 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<center>
+		<p> coming soon </p>
+	</center>
 </body>
 </html>
