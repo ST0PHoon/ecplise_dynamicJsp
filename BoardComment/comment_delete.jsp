@@ -13,7 +13,7 @@
 	// 삭제할 id 받아오기
 	String id = request.getParameter("id");
 	// id의 relevel 받아오기
-	String sql = "SELECT rootId, reLevel + 1, reLevel, reCnt, reGroupId FROM boardComment where id = " + id;
+	String sql = "SELECT rootId, reLevel + 1, reLevel, reCnt, reGroupId FROM boardComment2 where id = " + id;
 	ResultSet rset = stmt.executeQuery(sql);
 
 	rset.next();
@@ -25,7 +25,7 @@
 	rset.close();
 	
 	// 리스트 가져오기
-	String sqlRootId = "SELECT * from boardComment where rootId = " + rootId + " and reLevel >= " + reLevel + " and reCnt >  " + reCntCheck + " ORDER BY reCnt ASC ";
+	String sqlRootId = "SELECT * from boardComment2 where rootId = " + rootId + " and reLevel >= " + reLevel + " and reCnt >  " + reCntCheck + " ORDER BY reCnt ASC ";
 	int cnt = 1;
 	String lastReCnt = "";
 	// 리스트 돌면서 
@@ -38,28 +38,24 @@
 		if (currentReLevel > Integer.parseInt(reLevel)) {
 			// 삭제해라
 			Statement stmt2 = conn.createStatement();
-			stmt2.execute("delete from boardComment where reCnt = " + currentReCnt);
+			stmt2.execute("delete from boardComment2 where reCnt = " + currentReCnt);
 			stmt2.close();
 			cnt++;
 		} else {
 			lastReCnt = rsetRootId.getString(5);
-			Statement stmt2 = conn.createStatement();
-			stmt2.execute("delete from boardComment where id = " + id);
-			stmt2.close();
 			break;
 		}
 	}
 	
 	rsetRootId.close();
+
 	// 원글 일 때 자기자신 삭제
-	if(reLevel.equals("0")) {
-		Statement stmt3 = conn.createStatement();
-		stmt3.execute("delete from boardComment where id = " + id);
-		stmt3.close();
-	}
+	Statement stmt3 = conn.createStatement();
+	stmt3.execute("delete from boardComment2 where id = " + id);
+	stmt3.close();
 	// reCnt가 높은 댓글들의 reCnt 조정
 	if (!lastReCnt.equals("")) {
-		stmt.execute("update boardComment set reCnt = reCnt - " + cnt +" where reCnt >= " + lastReCnt + " and rootId = " + rootId);
+		stmt.execute("update boardComment2 set reCnt = reCnt - " + cnt +" where reCnt >= " + lastReCnt + " and rootId = " + rootId);
 	}
 %>
 
