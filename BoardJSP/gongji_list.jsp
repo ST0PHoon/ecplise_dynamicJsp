@@ -21,7 +21,7 @@
 		}
 		
 		int totalCount = 0; // 총자료개수
-		ResultSet rset2 = stmt.executeQuery("select count(*) from gongji;");
+		ResultSet rset2 = stmt.executeQuery("select count(*) from gongji2;");
 		while (rset2.next()) {
 		  totalCount = rset2.getInt(1);
 		}
@@ -80,7 +80,7 @@
 		   nPage = lastPage + 1;
 		}
 		
-		String sql = "SELECT id, title, date from gongji ORDER BY id DESC limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
+		String sql = "SELECT id, title, date from gongji2 ORDER BY id DESC limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
 		
 		ResultSet rset = stmt.executeQuery(sql);
 	%>

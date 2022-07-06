@@ -15,8 +15,8 @@
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc","root","kopo37");
 	Statement stmt = conn.createStatement();
 	
-	String sql = "SELECT * FROM boardComment where id = " + ckey;
-	String sql2 = "UPDATE boardComment set viewCnt = viewCnt + 1 where id = " + ckey;
+	String sql = "SELECT * FROM boardComment2 where id = " + ckey;
+	String sql2 = "UPDATE boardComment2 set viewCnt = viewCnt + 1 where id = " + ckey;
 	
 	stmt.execute(sql2)  ;
 	ResultSet rset = stmt.executeQuery(sql);

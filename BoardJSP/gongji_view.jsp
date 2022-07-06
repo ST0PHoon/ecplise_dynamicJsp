@@ -15,7 +15,7 @@
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc","root","kopo37");
 	Statement stmt = conn.createStatement();
 	
-	String sql = "SELECT * FROM gongji where id = " + ckey;
+	String sql = "SELECT * FROM gongji2 where id = " + ckey;
 	
 	ResultSet rset = stmt.executeQuery(sql);
 	rset.next();

@@ -34,7 +34,7 @@
 	//선택한 글의 원글번호, 댓글레벨 추출
 	String id = request.getParameter("id");
 	
-	String sql = "SELECT rootId, reLevel + 1, reLevel, reCnt, reGroupId FROM boardComment where id = " + id;
+	String sql = "SELECT rootId, reLevel + 1, reLevel, reCnt, reGroupId FROM boardComment2 where id = " + id;
 	ResultSet rset = stmt.executeQuery(sql);
 
 	rset.next();
@@ -46,7 +46,7 @@
 	String reGroupId = rset.getString(5);
 	rset.close();
 	// 리스트 가져오기
-	String sqlRootId = "SELECT * from boardComment where rootId = " + rootId + " ORDER BY reCnt ASC ";
+	String sqlRootId = "SELECT * from boardComment2 where rootId = " + rootId + " ORDER BY reCnt ASC ";
 	String breakId = "";
 	
 	ResultSet rsetRootId = stmt.executeQuery(sqlRootId);
@@ -71,12 +71,11 @@
 	String sqlReCnt = "";
 
 	if (reLevelPlus.equals("1")) {	// 댓글은 무조건 제일 아래 추가
-		sqlReCnt = "select max(reCnt) + 1 FROM boardComment where rootId = " + rootId;
+		sqlReCnt = "select max(reCnt) + 1 FROM boardComment2 where rootId = " + rootId;
 	} else if (reCntCheck == reCnt) {	// 해당 댓글레벨의 마지막 댓글인 경우
-		sqlReCnt = "select ifnull((select (max(reCnt) + 1) from boardComment as b where reGroupId = " + id + 
-						"), (select reCnt + 1 from boardComment as a where id = "+ id +")) FROM boardComment";
+		sqlReCnt = "select ifnull((select (max(reCnt) + 1) from boardComment2 as b where reGroupId = " + id + "), (select reCnt + 1 from boardComment2 as a where id = "+ id +")) FROM boardComment2";
 	} else { // 중간 댓글인 경우
-		sqlReCnt = "select reCnt FROM boardComment where id = " + breakId;
+		sqlReCnt = "select reCnt FROM boardComment2 where id = " + breakId;
 	}
 
 	ResultSet rsetReCnt = stmt.executeQuery(sqlReCnt);

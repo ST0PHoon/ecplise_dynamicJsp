@@ -13,7 +13,7 @@
 	Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc","root","kopo37");
 	Statement stmt = conn.createStatement();
 	
-	String sql="delete from gongji where id = " + id;  			
+	String sql="delete from gongji2 where id = " + id;  			
 
 	stmt.execute(sql);
 %>

@@ -20,12 +20,12 @@
 	String sql="";
 	
 	if (ckey.equals("INSERT")) {
-		sql = "insert into gongji (title, date, content) values " +
+		sql = "insert into gongji2 (title, date, content) values " +
 				"('" + cTitle + 
 				"', now()" + 					
 				", '" + cContent + "')";
 	} else {
-		sql = "update gongji set " +
+		sql = "update gongji2 set " +
 				"title = '" + cTitle + "', " +
 				"date = now(), " +
 				"content = '" + cContent + "' " +

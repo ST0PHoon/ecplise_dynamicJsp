@@ -30,17 +30,17 @@
 	String sql="";
 	
 	if (ckey.equals("INSERT")) {
-		sql = "insert into boardComment (rootId, reLevel, reGroupId, reCnt, viewCnt, title, date, content) values " +
-				"((select (ifnull(max(rootId) + 1, 1)) from boardComment as b) " +
+		sql = "insert into boardComment2 (rootId, reLevel, reGroupId, reCnt, viewCnt, title, date, content) values " +
+				"((select (ifnull(max(rootId) + 1, 1)) from boardComment2 as b) " +
 				", 0" +
-				", (select (ifnull(max(id) + 1, 1)) from boardComment as b)" +
+				", (select (ifnull(max(id) + 1, 1)) from boardComment2 as b)" +
 				", 0" +
 				", 0" +
 				", '" + cTitle + 
 				"', now()" + 					
 				", '" + cContent + "')";
 	} else if (ckey.equals("REINSERT")) {
-		String addReCntSql = "update boardComment set reCnt = reCnt + 1 where rootId = " + cRootId + " and reCnt >= " + cReCnt;
+		String addReCntSql = "update boardComment2 set reCnt = reCnt + 1 where rootId = " + cRootId + " and reCnt >= " + cReCnt;
 		
 		stmt.execute(addReCntSql);
 		
@@ -49,7 +49,7 @@
 			reRe += "└>";
 		}
 		
-		sql = "insert into boardComment (rootId, reLevel, reGroupId, reCnt, viewCnt, title, date, content) values " +
+		sql = "insert into boardComment2 (rootId, reLevel, reGroupId, reCnt, viewCnt, title, date, content) values " +
 				"(" + cRootId +
 				", " + cReLevel +
 				", " + cReGroupId +
@@ -60,7 +60,7 @@
 				", '" + cContent + "')";
 		
 	} else {
-		sql = "update boardComment set " +
+		sql = "update boardComment2 set " +
 				"title = '" + cTitle + "', " +
 				"date = now(), " +
 				"content = '" + cContent + "' " +

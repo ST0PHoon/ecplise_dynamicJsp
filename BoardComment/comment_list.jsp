@@ -22,7 +22,7 @@
 		}
 		
 		int totalCount = 0; // 총자료개수
-		ResultSet rset2 = stmt.executeQuery("select count(*) from boardComment;");
+		ResultSet rset2 = stmt.executeQuery("select count(*) from boardComment2;");
 		while (rset2.next()) {
 		  totalCount = rset2.getInt(1);
 		}
@@ -85,7 +85,7 @@
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sf.format(now);
 		
-		String sql = "SELECT id, if(date = '" + today + "', CONCAT(title,'[New]'), title), viewCnt , date from boardComment ORDER BY rootId DESC, reCnt ASC limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
+		String sql = "SELECT id, if(date = '" + today + "', CONCAT(title,'[New]'), title), viewCnt , date from boardComment2 ORDER BY rootId DESC, reCnt ASC limit " + (countPerPage * (cPageInt - 1)) + "," + countPerPage + " ;";
 		ResultSet rset = stmt.executeQuery(sql);
 	%>
 	<h2>게시판</h2>

@@ -33,7 +33,7 @@
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/kopoctc","root","kopo37");
 		Statement stmt = conn.createStatement();
 		
-		String sql = "SELECT title, content FROM gongji where id = " + id;
+		String sql = "SELECT title, content FROM gongji2 where id = " + id;
 		
 		ResultSet rset = stmt.executeQuery(sql);
 		rset.next();
