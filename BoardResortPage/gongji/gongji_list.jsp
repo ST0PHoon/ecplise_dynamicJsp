@@ -5,7 +5,29 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 목록</title>
+<title>소식 목록</title>
+  <style>
+  	h3 {
+  		margin:0px 0px 4px 0px;
+  	}
+  	a:link {
+	  text-decoration: none;
+	  color:black;
+	}
+	
+	a:visited {
+	  text-decoration: none;
+	  color:black;
+	}
+	
+	a:hover {
+	  text-decoration: none;
+	}
+	
+	a:active {
+	  text-decoration: none;
+	}
+  </style>
 </head>
 <body>
 	<%
@@ -84,41 +106,49 @@
 		
 		ResultSet rset = stmt.executeQuery(sql);
 	%>
-	<h2>게시판</h2>
-	<table cellspacing = 1  border = 1 width=600>
-		<tr align=center>
-			<td width = 50>번호</td>
-			<td width = 500>제목</td>
-			<td width = 100>등록일</td>
-		</tr>
-		<%
-			while (rset.next()) {
-				out.println("<tr align=center>");
-				out.println("<td>" + rset.getInt(1) + "</td>");
-				out.println("<td><a href='gongji_view.jsp?key="+ rset.getInt(1) +"'>" + rset.getString(2) + "</a></td>");
-				out.println("<td>" + rset.getString(3) + "</td>");
-				out.println("</tr>");
-			}
-		%>
-	</table>
-		<table width= border=0>
-		<tr>
-			<td width = 600 align=center>
-				<b><a href = 'gongji_list.jsp?page=<%=pPage %>'> &lt&lt </a></b>
-				<%
-					for (int i = startPage; i <= lastPage; i++) {
-						if(i == cPageInt) {
-				            out.print("<b><u><a href = 'gongji_list.jsp?page=" + i +"'> " + i + " </a></u></b>");
-				         } else {
-				            out.print("<b><a href = 'gongji_list.jsp?page=" + i +"'> " + i + " </a></b>");
-				         }
-					}
-				%>
-				<b><a href = 'gongji_list.jsp?page=<%=nPage %>'> &gt&gt </a></b>
-			</td>
-		</tr>
-	</table>
-	
-	<button onclick="location.href='gongji_insert.jsp'">신규</button>
+	<center>
+		<h3>소식</h3>
+		<table cellspacing = 1  border = 1 width=600>
+			<tr align=center>
+				<td width = 50>번호</td>
+				<td width = 500>제목</td>
+				<td width = 100>등록일</td>
+			</tr>
+			<%
+				while (rset.next()) {
+					out.println("<tr align=center>");
+					out.println("<td>" + rset.getInt(1) + "</td>");
+					out.println("<td><a href='gongji_view.jsp?key="+ rset.getInt(1) +"'>" + rset.getString(2) + "</a></td>");
+					out.println("<td>" + rset.getString(3) + "</td>");
+					out.println("</tr>");
+				}
+			%>
+		</table>
+			<table width= border=0>
+			<tr>
+				<td width = 600 align=center>
+					<b><a href = 'gongji_list.jsp?page=<%=pPage %>'> &lt&lt </a></b>
+					<%
+						for (int i = startPage; i <= lastPage; i++) {
+							if(i == cPageInt) {
+					            out.print("<b><u><a href = 'gongji_list.jsp?page=" + i +"'> " + i + " </a></u></b>");
+					         } else {
+					            out.print("<b><a href = 'gongji_list.jsp?page=" + i +"'> " + i + " </a></b>");
+					         }
+						}
+					%>
+					<b><a href = 'gongji_list.jsp?page=<%=nPage %>'> &gt&gt </a></b>
+				</td>
+			</tr>
+		</table>
+		<table width=620>
+			<tr>
+				<td width=550 />
+				<td>
+				  <button onclick="location.href='gongji_insert.jsp'">신규</button>
+				</td>
+			</tr>
+		</table>
+	</center>
 </body>
 </html>

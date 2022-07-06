@@ -23,6 +23,11 @@
 	}
 
 </script>
+	<style>
+	  	h3 {
+	  		margin:0px 0px 4px 0px;
+	  	}
+	</style>
 </head>
 <body>
 	<%
@@ -45,7 +50,8 @@
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sf.format(now);
 	%>
-	<h2>글 수정</h2>
+	<center>
+	<h3>이용후기 수정</h3>
 
 	<form method=post name='fm'>
 		<table width=650 border=1 cellspacing=1>
@@ -89,5 +95,6 @@
 			</tr>
 		</table>
 	</form>
+	</center>
 </body>
 </html>

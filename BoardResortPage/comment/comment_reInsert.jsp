@@ -19,6 +19,11 @@
 			}
 		}
 	</script>
+	<style>
+	  	h3 {
+	  		margin:0px 0px 4px 0px;
+	  	}
+	</style>
 </head>
 <body>
 	<%
@@ -87,52 +92,53 @@
 
 	rsetReCnt.close();
 	%>
-	<h2>댓글 작성</h2>
-	<form method=POST name='fm'>
-		<table width=650 border=1 cellspacing=1>
-			<tr>
-				<td><b>번호</b></td>
-				<td>자동부여</td>
-			</tr>
-			<tr>
-				<td><b>제목</b></td>
-				<td><input type=text name=title size=70 maxlength=70
-					required='required'></td>
-			</tr>
-			<tr>
-				<td><b>일자</b></td>
-				<td><%=today%></td>
-			</tr>
-			<tr>
-				<td><b>내용</b></td>
-				<td><textarea
-						style='width: 550px; height: 250px; resize: none;' name=content
-						cols=70 row=600 required='required'></textarea></td>
-			</tr>
-			<tr>
-				<td><b>원글</b></td>
-				<td><input type=text name=rootId value=<%=rootId%> readonly>
-				</td>
-			</tr>
-			<tr>
-				<td><b>댓글위치</b></td>
-				<td>
-					<input type=text name=reLevel value=<%=reLevelPlus%> readonly>
-					댓글내 순서<input type=text name=reCnt value=<%=NewReCnt%> readonly>
-					<input type=hidden name=reGroupId value=<%=id%>>
-				</td>
-			</tr>
-		</table>
-		<table width=650>
-			<tr>
-				<td width=600 />
-				<td><input type=submit value="취소" onclick="submitForm(1)'">
-				</td>
-				<td><input type=submit value="작성" onclick="submitForm(2)">
-				</td>
-			</tr>
-		</table>
-
-	</form>
+	<center>
+		<h3>댓글 작성</h3>
+		<form method=POST name='fm'>
+			<table width=650 border=1 cellspacing=1>
+				<tr>
+					<td><b>번호</b></td>
+					<td>자동부여</td>
+				</tr>
+				<tr>
+					<td><b>제목</b></td>
+					<td><input type=text name=title size=70 maxlength=70
+						required='required'></td>
+				</tr>
+				<tr>
+					<td><b>일자</b></td>
+					<td><%=today%></td>
+				</tr>
+				<tr>
+					<td><b>내용</b></td>
+					<td><textarea
+							style='width: 550px; height: 250px; resize: none;' name=content
+							cols=70 row=600 required='required'></textarea></td>
+				</tr>
+				<tr>
+					<td><b>원글</b></td>
+					<td><input type=text name=rootId value=<%=rootId%> readonly>
+					</td>
+				</tr>
+				<tr>
+					<td><b>댓글위치</b></td>
+					<td>
+						<input type=text name=reLevel value=<%=reLevelPlus%> readonly>
+						댓글내 순서<input type=text name=reCnt value=<%=NewReCnt%> readonly>
+						<input type=hidden name=reGroupId value=<%=id%>>
+					</td>
+				</tr>
+			</table>
+			<table width=650>
+				<tr>
+					<td width=600 />
+					<td><input type=submit value="취소" onclick="submitForm(1)'">
+					</td>
+					<td><input type=submit value="작성" onclick="submitForm(2)">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
 </body>
 </html>

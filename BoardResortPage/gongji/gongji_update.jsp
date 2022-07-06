@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>글 수정</title>
+<title>소식 수정</title>
 <script type="text/javascript">
 	function submitForm(mode) {
 		var myform = document.fm;
@@ -23,6 +23,11 @@
 	}
 
 </script>
+  <style>
+  	h3 {
+  		margin:0px 0px 4px 0px;
+  	}
+  </style>
 </head>
 <body>
 	<%
@@ -45,49 +50,51 @@
 		SimpleDateFormat sf = new SimpleDateFormat("yyyy-MM-dd");
 		String today = sf.format(now);
 	%>
-	<h2>글 수정</h2>
-
-	<form method=post name='fm'>
-		<table width=650 border=1 cellspacing=1>
-			<tr>
-				<td><b>번호</b></td>
-				<td>
-					<input type=text name=id size=70 maxlength=70 value=<%=id %> readonly>
-				</td>
-			</tr>
-			<tr>
-				<td><b>제목</b></td>
-				<td>
-					<input type=text name=title size=70 maxlength=70 value=<%=cTitle %> required='required'>
-				</td>
-			</tr>
-			<tr>
-				<td><b>일자</b></td>
-				<td>
-					<%=today %>
-				</td>
-			</tr>
-			<tr>
-				<td><b>내용</b></td>
-				<td>
-					<textarea style='width:550px; height:250px; resize:none;' name =content cols=70 row=600 required='required'><%=cContent %></textarea>
-				</td>
-			</tr>
-		</table>
-				<table width=650>
-			<tr>
-				<td width=600 />
-				<td>
-					<input type = submit value="취소" onclick="submitForm(1)">
-				</td>
-				<td>
-					<input type = submit value="수정" onclick="submitForm(2)">
-				</td>
-				<td>
-					<input type = submit value="삭제" onclick="submitForm(3)">
-				</td>
-			</tr>
-		</table>
-	</form>
+	<center>
+		<h3>소식 수정</h3>
+	
+		<form method=post name='fm'>
+			<table width=650 border=1 cellspacing=1>
+				<tr>
+					<td><b>번호</b></td>
+					<td>
+						<input type=text name=id size=70 maxlength=70 value=<%=id %> readonly>
+					</td>
+				</tr>
+				<tr>
+					<td><b>제목</b></td>
+					<td>
+						<input type=text name=title size=70 maxlength=70 value=<%=cTitle %> required='required'>
+					</td>
+				</tr>
+				<tr>
+					<td><b>일자</b></td>
+					<td>
+						<%=today %>
+					</td>
+				</tr>
+				<tr>
+					<td><b>내용</b></td>
+					<td>
+						<textarea style='width:550px; height:250px; resize:none;' name =content cols=70 row=600 required='required'><%=cContent %></textarea>
+					</td>
+				</tr>
+			</table>
+					<table width=650>
+				<tr>
+					<td width=600 />
+					<td>
+						<input type = submit value="취소" onclick="submitForm(1)">
+					</td>
+					<td>
+						<input type = submit value="수정" onclick="submitForm(2)">
+					</td>
+					<td>
+						<input type = submit value="삭제" onclick="submitForm(3)">
+					</td>
+				</tr>
+			</table>
+		</form>
+	</center>
 </body>
 </html>
