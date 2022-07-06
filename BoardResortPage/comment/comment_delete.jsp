@@ -52,11 +52,11 @@
 	
 	rsetRootId.close();
 	// 원글 일 때 자기자신 삭제
-	if(reLevel.equals("0")) {
+
 		Statement stmt3 = conn.createStatement();
 		stmt3.execute("delete from boardComment where id = " + id);
 		stmt3.close();
-	}
+
 	// reCnt가 높은 댓글들의 reCnt 조정
 	if (!lastReCnt.equals("")) {
 		stmt.execute("update boardComment set reCnt = reCnt - " + cnt +" where reCnt >= " + lastReCnt + " and rootId = " + rootId);
